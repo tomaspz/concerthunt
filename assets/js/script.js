@@ -1,3 +1,6 @@
+console.log("hello world");
+//added document.ready function - Em
+$(document).ready(function() {
 // bandsintown API Key
 const bandsAPIKey = "7a94704114b40126fda0059aab05bb1c";
 // example artist
@@ -12,3 +15,6 @@ $.ajax({
 }).then(function (bandsResponse) {
     console.log(bandsResponse);
 })
+
+
+});
