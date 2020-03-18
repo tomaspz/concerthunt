@@ -1,0 +1,32 @@
+.foundation-5-top-bar {
+    background: #333;
+    color: #fefefe;
+  }
+  
+  .foundation-5-top-bar .menu {
+    background: #333;
+  }
+  
+  .foundation-5-top-bar .menu a {
+    color: #fefefe;
+  }
+  
+  .foundation-5-top-bar .is-dropdown-submenu {
+    border: 0;
+  }
+  
+  .foundation-5-top-bar .is-dropdown-submenu-item.opens-right a::after {
+    border-color: transparent transparent transparent #fefefe;
+  }
+  
+  .foundation-5-top-bar .js-drilldown-back > a::before {
+    border-color: transparent #fefefe transparent transparent;
+  }
+  
+  .foundation-5-top-bar .is-drilldown-submenu-parent > a::after {
+    border-color: transparent transparent transparent #fefefe;
+  }
+  
+  .foundation-5-top-bar .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+    border-color: #fefefe transparent transparent;
+  }
