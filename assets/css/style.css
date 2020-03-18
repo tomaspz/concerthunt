@@ -1,6 +1,7 @@
 .foundation-5-top-bar {
     background: #333;
     color: #fefefe;
+    background:-webkit-linear-gradient(top, #0f1c21 0%, #26363e 45%, #4f5863 76%, #ffbe5c 100%);
   }
   
   .foundation-5-top-bar .menu {
@@ -30,3 +31,65 @@
   .foundation-5-top-bar .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
     border-color: #fefefe transparent transparent;
   }
+
+  .card {
+    display: inline-flex;               
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 350px;
+  }
+  
+  .card-info {
+    padding: 1rem;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 1fr 2.5rem;
+        grid-template-rows: 1fr 2.5rem;
+    -ms-grid-columns: 3fr 1fr;
+        grid-template-columns: 3fr 1fr;
+  }
+  
+  .card-title {
+    font-size: 2rem;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+  }
+  
+  .card-icon {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    justify-self: right;
+    width: 30px;
+    height: 30px;
+    background-color: LightBlue;
+    border-radius: 100%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-column-align: center;
+        justify-items: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .card-author {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    -webkit-align-self: bottom;
+        -ms-flex-item-align: bottom;
+                -ms-grid-row-align: bottom;
+            align-self: bottom;
+  }
+  
+  .card-stats {
+    -webkit-align-self: bottom;
+        -ms-flex-item-align: bottom;
+                -ms-grid-row-align: bottom;
+            align-self: bottom;
+    justify-self: right;
+  }
+
+#results {            
+    /* text-align: center;
+    margin: auto; */
+}
