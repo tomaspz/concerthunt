@@ -100,3 +100,7 @@
 #searchBtn:hover {
   background-color: #EE9B1E;
 }
+
+#artist-search {
+  margin-top: 30px;
+}
