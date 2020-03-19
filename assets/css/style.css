@@ -1,3 +1,7 @@
+* {
+  background-color: #434D56;
+}
+
 .foundation-5-top-bar {
     background: #333;
     color: #fefefe;
@@ -89,7 +93,10 @@
     justify-self: right;
   }
 
-#results {            
-    /* text-align: center;
-    margin: auto; */
+.button {
+  background-color: #ffbe5c;
+}
+
+#searchBtn:hover {
+  background-color: #EE9B1E;
 }
