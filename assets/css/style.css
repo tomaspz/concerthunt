@@ -65,7 +65,7 @@
     justify-self: right;
     width: 30px;
     height: 30px;
-    background-color: LightBlue;
+    background-color: rgb(203, 208, 209);
     border-radius: 100%;
     display: -ms-grid;
     display: grid;
@@ -97,10 +97,19 @@
   background-color: #ffbe5c;
 }
 
-#searchBtn:hover {
+.button:hover {
   background-color: #EE9B1E;
 }
 
 #artist-search {
   margin-top: 30px;
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #434D56;
+  color: #fefefe;
+  text-align: center;
 }
