@@ -1,22 +1,20 @@
-# project1-activity1
+# Project-1-ConcertHunt
 
 ## User Story
 
 ```
-GIVEN I am using a music account with playlists
-WHEN I search for the artist/song-title/playlist
-THEN I want to receive all relavent artists/song-title/playlist
-WHEN I click on the artist/song-title/playlist
+GIVEN I have a list of my favorite artists/songs
+WHEN I search for the artist/song-title
+THEN I want to receive all relevant artists/song-title
+WHEN I click on the artist/song-title
 THEN I want to go to the artists page
-WHEN I click on the playlist
-THEN I want the page to query the artists in the playlist
-WHEN I make a music playlist on Spotify
-THEN I want to be able to see it on (PROJECT 1)
-WHEN the song has a music video
-THEN I want to play it on (PROJECT 1)
-WHEN I play a track or music video
-THEN I want to receive the artists information 
+WHEN I look up artists/songs
+THEN  I can look in local storage for saved data
+WHEN I click on the artist
+THEN I can play a track or music video
 WHEN the artist has an upcoming concert performance
-THEN I want to recieve concert information on (PROJECT 1)
+THEN I want to receive concert information on the artist’s page
 
 ```
+
+### Description
