@@ -2,6 +2,30 @@
   background-color: #434D56;
 }
 
+/*added background image */
+body {
+  background-image: url(../images/background.jpg);
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-color: #130a0f;
+}
+
+/*made title's background in nav bar transparent and font larger */
+div.top-bar-title {
+  background-color: transparent;
+}
+strong {
+  background-color: transparent;
+  font-size: 2rem;
+}
+
+/*made icon's background in nav bar transparent and the icon itself larger */
+i.fas.fa-icons.fa-3x {
+  background-color: transparent;
+}
+
+
+
 .foundation-5-top-bar {
     background: #333;
     color: #fefefe;
