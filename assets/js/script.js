@@ -1,5 +1,4 @@
-console.log("hello world");
-//added document.ready function - Em
+
 
 $(document).ready(function() {
   
@@ -9,13 +8,13 @@ $(document).ready(function() {
 
   // create card for searched artist
   function createCard(artist) {
-    return `<div class='large-3 columns'><div class='card'><img class='card-img' src=${artist.image_url} alt='header' /><div class='card-info'><h1 class='card-title'>${artist.name}</h1><div class='card-icon'>${artist.icon}</div><p class='card-author'>${artist.genre}</p><p class='card-stats'>6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p></div></div></div>`
+    return `<div class="cell"><img class="thumbnail" src="${artist.image_url}" /><h5>${artist.name}</h5></div>`
   }
 
   function artistQueryLastFM(artist) {
 
     var queryLastFMURL =
-      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=" + lastFmAPIKey + "&format=json";
+      "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=" + lastFmAPIKey + "&format=json";
 
     $.ajax({
       url: queryLastFMURL,
@@ -67,6 +66,13 @@ $(document).ready(function() {
     artistQueryBIT(artist);
     artistQueryLastFM(artist);
     concertQueryBIT(artist);
+
+    var artistCard = createCard(artist);
+    console.log(artistCard);
+    $("#cards-group").append(artistCard);
+
+
+
 
   });
 });
