@@ -12,6 +12,19 @@ $(document).ready(function() {
     return `<div class='large-3 columns'><div class='card'><img class='card-img' src=${artist.image_url} alt='header' /><div class='card-info'><h1 class='card-title'>${artist.name}</h1><div class='card-icon'>${artist.icon}</div><p class='card-author'>${artist.genre}</p><p class='card-stats'>6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p></div></div></div>`
   }
 
+  function artistQueryLastFM(artist) {
+
+    var queryLastFMURL =
+      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=" + lastFmAPIKey + "&format=json";
+
+    $.ajax({
+      url: queryLastFMURL,
+      method: "GET"
+    }).then(function(lastResponse) {
+      console.log(lastResponse);
+    });
+  }
+
   function artistQueryBIT(artist) {
 
     var queryBandsURL =
@@ -52,6 +65,7 @@ $(document).ready(function() {
     console.log(artist);
 
     artistQueryBIT(artist);
+    artistQueryLastFM(artist);
     concertQueryBIT(artist);
 
   });
