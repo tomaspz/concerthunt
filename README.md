@@ -3,11 +3,11 @@
 ## Wireframes & Color Palette
 
 ```
-![](assets/images/Project 1 Rough Draft 1.jpg)
+![](/assets/images/Project-1-Rough-Draft-1.jpg)
 
-![](assets/images/Project 1 Rough Draft 2.jpg)
+![](/assets/images/Project-1-Rough-Draft-2.jpg)
 
-![](assets/images/Color-Palette.PNG)
+![](/assets/images/Color-Palette.PNG)
 
 
 ```
