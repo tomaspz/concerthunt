@@ -5,13 +5,25 @@ $(document).ready(function() {
   getTopArtists().then(function(response){
     var topArtists = response.artists.artist;
     console.log(topArtists);
-    for(var i=0; i<12 ; i++){
+    var namesArray = [];
+    for(var i=0; i<topArtists.length ; i++){
       var cardEl = createCardTopArtists(topArtists[i]);
-      console.log(topArtists[i].image);
-      $("#cards-group").prepend(cardEl);
+      var artistName = topArtists[i].name;
+      namesArray.push(artistName);
+      var image = artistQueryBIT(namesArray[i].);
+      console.log(artistName);
+
+      // console.log(topArtists[i].image);
+      $("#cards-group").append(cardEl);
+
     }
   });
-  
+
+  // getArtistInfo(artist).then(function (response) {
+  //   var artistInfo = response;
+  //   console.log(response);
+  // })
+
   // bandsintown API Key
   const bandsAPIKey = "7a94704114b40126fda0059aab05bb1c";
   const lastFmAPIKey = "f73c832fa45f573c5aa8ef6885d8fab3";
@@ -35,7 +47,16 @@ $(document).ready(function() {
   }
 
   function getTopArtists() {
-    var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
+    var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
+
+    return $.ajax({
+      url: queryTopURL,
+      method: "GET"
+    })
+  }
+
+  function getArtistInfo(artist){
+    var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
 
     return $.ajax({
       url: queryTopURL,
