@@ -35,7 +35,7 @@ $(document).ready(function() {
   }
 
   function getTopArtists() {
-    var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
+    var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=f73c832fa45f573c5aa8ef6885d8fab3&format=json";
 
     return $.ajax({
       url: queryTopURL,
@@ -94,12 +94,5 @@ $(document).ready(function() {
     concertQueryBIT(artist).then(function(concertResponseBIT){
       console.log(concertResponseBIT);
     });
-
-
-    
-
-
-
-
   });
 });
