@@ -129,11 +129,11 @@ i.fas.fa-icons.fa-3x {
   margin-top: 30px;
 }
 
-footer {
+#footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #434D56;
+  background: #333;
   color: #fefefe;
   text-align: center;
 }
