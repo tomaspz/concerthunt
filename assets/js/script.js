@@ -15,7 +15,7 @@ $(document).ready(function() {
   function artistQueryLastFM(artist) {
 
     var queryLastFMURL =
-      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=" + lastFmAPIKey + "&format=json";
+      "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=" + lastFmAPIKey + "&format=json";
 
     $.ajax({
       url: queryLastFMURL,

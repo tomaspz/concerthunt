@@ -56,7 +56,7 @@
           <ul class="menu">
             <li><input type="text" placeholder="Search" id="inputSearch" /></li>
             <li>
-              <button type="button" class="button" id="searchBtn">
+              <button type="button" class="button radius" id="searchBtn">
                 Search
               </button>
             </li>
@@ -152,7 +152,7 @@
           <img class="thumbnail" src="https://placehold.it/550x550" />
           <h5>Arist #1</h5>
         </div>
-        
+
         <div class="cell">
           <img class="thumbnail" src="https://placehold.it/550x550" />
           <h5>Arist #2</h5>
@@ -232,7 +232,7 @@
         <div class="medium-6 large-5 cell large-offset-1">
           <h3>Artist</h3>
           <p id="artist-genre">Genre: Pop</p>
-          <p id="artist-details">
+          <p id="artist-info">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
             expedita est cum eos, nihil eaque fugiat culpa, velit cumque
             recusandae aperiam dolore doloremque magni quaerat deleniti ab
@@ -278,42 +278,42 @@
         </div>
       </div>
 
-      <div class="">
+      <div class="tabs-section">
         <hr />
         <ul
           class="tabs"
           data-tabs=""
-          id="example-tabs"
+          id="artist-tabs"
           role="tablist"
           data-e="kts49s-e"
         >
           <li class="tabs-title is-active" role="presentation">
             <a
-              href="#panel1"
-              aria-selected="true"
+              href="#review-panel"
+              aria-selected="false"
               role="tab"
               aria-controls="panel1"
-              id="panel1-label"
+              id="review-panel-label"
               tabindex="0"
               >Reviews</a
             >
           </li>
           <li class="tabs-title" role="presentation">
             <a
-              href="#panel2"
+              href="#concert-panel"
               role="tab"
               aria-controls="panel2"
-              aria-selected="false"
-              id="panel2-label"
+              aria-selected="true"
+              id="concert-panel-label"
               tabindex="-1"
               >Concerts</a
             >
           </li>
         </ul>
-        <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-content" data-tabs-content="tabs">
           <div
             class="tabs-panel"
-            id="panel1"
+            id="review-panel"
             role="tabpanel"
             aria-labelledby="panel1-label"
           >
@@ -369,7 +369,7 @@
           <div
             class="tabs-panel is-active"
             id="panel2"
-            role="tabpanel"
+            role="concert-panel"
             aria-labelledby="panel2-label"
             aria-hidden="true"
           >
@@ -470,8 +470,26 @@
       </div> -->
     </article>
 
-    <footer>
+    <!-- <footer>
       <p>© ConcertHunt 2020</p>
+    </footer> -->
+
+    <footer>
+      <div class="grid-x grid-margin-y expanded footer">
+        <!-- <div class="medium-6 cell">
+          <ul class="menu">
+            <li><a href="#">Legal</a></li>
+            <li><a href="#">Partner</a></li>
+            <li><a href="#">Explore</a></li>
+          </ul>
+        </div> -->
+
+        <div class="medium-12 cell copyright">
+          <ul class="menu align-center">
+            <li class="menu-text">Copyright © 2020 Concert Hunt</li>
+          </ul>
+        </div>
+      </div>
     </footer>
 
     <script
