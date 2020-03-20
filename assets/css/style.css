@@ -1,147 +1,164 @@
-* {
-  background-color: #434D56;
+article {
+  background-color: #434d56;
+  color: #fefefe;
+  padding-top: 20px;
 }
 
 /*added background image */
 body {
   background-image: url(../images/background.jpg);
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
   background-color: #130a0f;
 }
 
-/*made title's background in nav bar transparent and font larger */
-div.top-bar-title {
-  background-color: transparent;
-}
 strong {
   background-color: transparent;
-  font-size: 2rem;
+  font-size: 3rem;
 }
-
-/*made icon's background in nav bar transparent and the icon itself larger */
-i.fas.fa-icons.fa-3x {
-  background-color: transparent;
-}
-
-
 
 .foundation-5-top-bar {
-    background: #333;
-    color: #fefefe;
-    background:-webkit-linear-gradient(top, #0f1c21 0%, #26363e 45%, #4f5863 76%, #ffbe5c 100%);
-  }
-  
-  .foundation-5-top-bar .menu {
-    background: #333;
-  }
-  
-  .foundation-5-top-bar .menu a {
-    color: #fefefe;
-  }
-  
-  .foundation-5-top-bar .is-dropdown-submenu {
-    border: 0;
-  }
-  
-  .foundation-5-top-bar .is-dropdown-submenu-item.opens-right a::after {
-    border-color: transparent transparent transparent #fefefe;
-  }
-  
-  .foundation-5-top-bar .js-drilldown-back > a::before {
-    border-color: transparent #fefefe transparent transparent;
-  }
-  
-  .foundation-5-top-bar .is-drilldown-submenu-parent > a::after {
-    border-color: transparent transparent transparent #fefefe;
-  }
-  
-  .foundation-5-top-bar .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
-    border-color: #fefefe transparent transparent;
-  }
+  background: #333;
+  color: #fefefe;
+  background: -webkit-linear-gradient(
+    top,
+    #0f1c21 0%,
+    #26363e 45%,
+    #4f5863 76%,
+    #ffbe5c 100%
+  );
+}
 
-  .card {
-    display: inline-flex;               
-    margin-top: 20px;
-    margin-left: 20px;
-    width: 350px;
-  }
-  
-  .card-info {
-    padding: 1rem;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-rows: 1fr 2.5rem;
-        grid-template-rows: 1fr 2.5rem;
-    -ms-grid-columns: 3fr 1fr;
-        grid-template-columns: 3fr 1fr;
-  }
-  
-  .card-title {
-    font-size: 2rem;
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-  }
-  
-  .card-icon {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-    justify-self: right;
-    width: 30px;
-    height: 30px;
-    background-color: rgb(203, 208, 209);
-    border-radius: 100%;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-column-align: center;
-        justify-items: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  
-  .card-author {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    -webkit-align-self: bottom;
-        -ms-flex-item-align: bottom;
-                -ms-grid-row-align: bottom;
-            align-self: bottom;
-  }
-  
-  .card-stats {
-    -webkit-align-self: bottom;
-        -ms-flex-item-align: bottom;
-                -ms-grid-row-align: bottom;
-            align-self: bottom;
-    justify-self: right;
-  }
+.top-bar
+input {
+  margin-right: 0;
+}
+
+.foundation-5-top-bar .menu {
+  background: #333;
+}
+
+.foundation-5-top-bar .menu a {
+  color: #fefefe;
+}
+
+.foundation-5-top-bar .is-dropdown-submenu {
+  border: 0;
+}
+
+.foundation-5-top-bar .is-dropdown-submenu-item.opens-right a::after {
+  border-color: transparent transparent transparent #fefefe;
+}
+
+.foundation-5-top-bar .js-drilldown-back > a::before {
+  border-color: transparent #fefefe transparent transparent;
+}
+
+.foundation-5-top-bar .is-drilldown-submenu-parent > a::after {
+  border-color: transparent transparent transparent #fefefe;
+}
+
+.foundation-5-top-bar
+  .dropdown.menu.medium-horizontal
+  > li.is-dropdown-submenu-parent
+  > a::after {
+  border-color: #fefefe transparent transparent;
+}
+
+.card {
+  display: inline-flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 350px;
+}
+
+.card-info {
+  padding: 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 2.5rem;
+  grid-template-rows: 1fr 2.5rem;
+  -ms-grid-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
+}
+
+.card-title {
+  font-size: 2rem;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.card-icon {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  justify-self: right;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(203, 208, 209);
+  border-radius: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column-align: center;
+  justify-items: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.card-author {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  -webkit-align-self: bottom;
+  -ms-flex-item-align: bottom;
+  -ms-grid-row-align: bottom;
+  align-self: bottom;
+}
+
+.card-stats {
+  -webkit-align-self: bottom;
+  -ms-flex-item-align: bottom;
+  -ms-grid-row-align: bottom;
+  align-self: bottom;
+  justify-self: right;
+}
 
 .button {
   background-color: #ffbe5c;
+  border: 1px solid #cacaca;
 }
 
 .button:hover {
-  background-color: #EE9B1E;
+  background-color: #ee9b1e;
 }
 
-#artist-search {
+#artist-search,
+#artist-details {
   margin-top: 30px;
 }
 
-.artist-name {
-  color: #fefefe; 
+.tabs-title 
+a {
+  color: #ffbe5c;
+  background-color: #26363e;
 }
 
-.main-title {
+.tabs-content {
+  background-color: #26363e;
   color: #fefefe;
 }
 
-footer {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #434D56;
+.footer {
+  background: #333;
   color: #fefefe;
-  text-align: center;
+  background: -webkit-linear-gradient(
+    bottom,
+    #0f1c21 0%,
+    #26363e 45%,
+    #4f5863 76%,
+    #ffbe5c 100%
+  );
+}
+
+.copyright {
+  background-color: transparent;
 }
