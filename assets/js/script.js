@@ -4,7 +4,8 @@ $(document).ready(function() {
 
   getTopArtists().then(function(response) {
     var topArtists = response.artists.artist;
-
+    var articleTitle = $("<h4 class='main-title'>Recommended Artists in your Area!</h4>");
+    $("#artist-search").prepend(articleTitle);
     for (var i = 0; i < topArtists.length; i++) {
       var artist = topArtists[i].name;
       // namesArray.push(artist);
