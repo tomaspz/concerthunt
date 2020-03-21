@@ -12,9 +12,15 @@ body {
   background-color: #130a0f;
 }
 
-strong {
+header h1 {
   background-color: transparent;
   font-size: 3rem;
+  font-family: "Faster One", Arial, Helvetica, sans-serif;
+  color: #ffbe5c;
+}
+
+main {
+ margin-bottom: 40px;
 }
 
 .foundation-5-top-bar {
@@ -134,6 +140,7 @@ input {
 #artist-search,
 #artist-details {
   margin-top: 30px;
+  text-align: center;
 }
 
 .tabs-title 
@@ -161,4 +168,8 @@ a {
 
 .copyright {
   background-color: transparent;
+}
+
+.cell {
+  margin-bottom: 20px;
 }
