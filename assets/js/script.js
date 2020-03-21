@@ -83,6 +83,7 @@ $(document).ready(function() {
     });
   }
 
+  // EVENT LISTENER ON THE SEARCH BUTTON
   $("#searchBtn").on("click", function(event) {
     event.preventDefault();
 
