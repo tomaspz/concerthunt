@@ -46,7 +46,7 @@ $(document).ready(function() {
 
   function getTopArtists() {
     var queryTopURL =
-      "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
+      "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
 
     return $.ajax({
       url: queryTopURL,
