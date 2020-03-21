@@ -38,7 +38,7 @@ $(document).ready(function() {
     return ` <article class="grid-container" id="artist-details">
     <div class="grid-x grid-margin-x">
       <div class="medium-6 cell">
-        <img class="thumbnail" src="https://placehold.it/650x350"/>
+        <img id="artist-650" class="thumbnail" src="" alt="${object.artist.name}"/>
         <div class="grid-x grid-padding-x small-up-4">
           <div class="cell">
             <img src="https://placehold.it/250x200" />
@@ -312,9 +312,21 @@ $(document).ready(function() {
 
     artistInfoQueryLFM(artist).then(function(lastResponse) {
       var artistInfoElem = createArtistInfoLFMEl(lastResponse);
+      getArtistImage(artist).then(function(response) {
+        var image = response.thumb_url;
+        $("#artist-650").attr("src", image).append(image);
+        console.log(image);
+        var name = response.name;
+        console.log(name);
+        // imageArray.push(response.thumb_url);
+        // var cardEl = createCardTopArtists(name, image);
+        // $("#cards-group").append(cardEl);
+      });
       // console.log("artistInfoElem: " + artistInfoElem)
       $("#content").append(artistInfoElem);
       // console.log(lastResponse);
+
+       
     })
     
     
