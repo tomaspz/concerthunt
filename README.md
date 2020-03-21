@@ -2,7 +2,8 @@
 
 ## Wireframes & Color Palette
 
-```
+![](/assets/images/Concert-Hunt.PNG)
+
 ![](/assets/images/Project-1-Rough-Draft-1.jpg)
 
 ![](/assets/images/Project-1-Rough-Draft-2.jpg)
@@ -10,7 +11,7 @@
 ![](/assets/images/Color-Palette.PNG)
 
 
-```
+
 
 ## User Story
 
