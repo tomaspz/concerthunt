@@ -34,31 +34,31 @@ $(document).ready(function() {
     return `<div class="cell"><img class="thumbnail" src="${image}"/><h5 class="artist-name">${artist}</h5></div>`;
   }
 
-  function createArtistInfoLFMEl(object) {
+  function createArtistInfoLFMEl(obj) {
     return ` <article class="grid-container" id="artist-details">
     <div class="grid-x grid-margin-x">
       <div class="medium-6 cell">
-        <img id="artist-650" class="thumbnail" src="" alt="${object.artist.name}"/>
+        <img id="artist-650" class="thumbnail" src="" alt="${obj.artist.name}"/>
         <div class="grid-x grid-padding-x small-up-4">
           <div class="cell">
-            <img src="https://placehold.it/250x200" />
+            <img id="album1" alt="album cover 1"/>
           </div>
           <div class="cell">
-            <img src="https://placehold.it/250x200" />
+            <img id="album2" alt="album cover 2"/>
           </div>
           <div class="cell">
-            <img src="https://placehold.it/250x200" />
+            <img id="album3" alt="album cover 3" />
           </div>
           <div class="cell">
-            <img src="https://placehold.it/250x200" />
+            <img id="album4" alt="album cover 4" />
           </div>
         </div>
       </div>
 
       <div class="medium-6 large-5 cell large-offset-1">
-        <h3>${object.artist.name}</h3>
-        <p id="artist-genre">Genre: ${object.artist.tags.tag[0].name}</p>  
-        <p id="artist-info">${object.artist.bio.summary}</p>
+        <h3>${obj.artist.name}</h3>
+        <p id="artist-genre">Genre: ${obj.artist.tags.tag[0].name}</p>  
+        <p id="artist-info">${obj.artist.bio.summary}</p>
 
         <a href="#" class="button large expanded">ConcertHunt</a>
 
@@ -272,6 +272,18 @@ $(document).ready(function() {
     });
   }
 
+  //calling 'albums' to get the photo
+  function getAlbumImagesLFM(artist) {
+    var queryAlbumsLFM =
+      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist="+
+      artist + "&api_key=" + lastFmAPIKey +"&format=json";
+
+    return $.ajax({
+      url: queryAlbumsLFM,
+      method: "GET"
+    });
+  }
+
   function concertQueryBIT(artist) {
     var queryConcertBIT =
       "https://rest.bandsintown.com/artists/" +
@@ -312,6 +324,7 @@ $(document).ready(function() {
 
     artistInfoQueryLFM(artist).then(function(lastResponse) {
       var artistInfoElem = createArtistInfoLFMEl(lastResponse);
+      
       getArtistImage(artist).then(function(response) {
         var image = response.thumb_url;
         $("#artist-650").attr("src", image).append(image);
@@ -322,6 +335,17 @@ $(document).ready(function() {
         // var cardEl = createCardTopArtists(name, image);
         // $("#cards-group").append(cardEl);
       });
+
+      getAlbumImagesLFM(artist).then(function(resp){
+        console.log(resp);
+        var images = [];
+        for(var i=0; i<4; i++){
+          images.push(resp.topalbums.album[i].image[2][`#text`]);
+          console.log(resp.topalbums.album[i].image[2][`#text`]);
+          $("#album"+(i+1)).attr("src", images[i]).append(images[i]);
+        }
+
+      })
       // console.log("artistInfoElem: " + artistInfoElem)
       $("#content").append(artistInfoElem);
       // console.log(lastResponse);
