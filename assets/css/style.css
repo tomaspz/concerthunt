@@ -136,6 +136,7 @@ input {
   margin-top: 30px;
 }
 
+<<<<<<< HEAD
 .tabs-title 
 a {
   color: #ffbe5c;
@@ -148,6 +149,12 @@ a {
 }
 
 .footer {
+=======
+#footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+>>>>>>> 3359cbf747b92a1105c03a3a8cb1abe18b782ff7
   background: #333;
   color: #fefefe;
   background: -webkit-linear-gradient(
