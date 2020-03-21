@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="top-bar foundation-5-top-bar">
+    <nav class="top-bar foundation-5-top-bar">
       <div class="top-bar-title">
         <i class="fas fa-icons fa-3x"></i>
         <strong>CONCERT HUNT</strong>
@@ -54,7 +54,9 @@
         </div>
         <div class="top-bar-right">
           <ul class="menu">
-            <li><input type="text" placeholder="Artist Search" id="inputSearch" /></li>
+            <li>
+              <input type="text" placeholder="Artist Search" id="inputSearch" />
+            </li>
             <li>
               <button type="button" class="button radius" id="searchBtn">
                 Search
@@ -63,7 +65,12 @@
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
+
+    <main id="content">
+
+    </main>
+
 
     <!-- <div class="container align-spaced align-center">
       <div class="row medium-collapse large-uncollapse" id="results">
@@ -145,75 +152,15 @@
       </div>
     </div> -->
 
-    <article class="grid-container" id="artist-search">
-      <h4 class="main-title">Recommended Artists in your Area!</h4>
-      <div id="cards-group" class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-4">
+    <!-- <article class="grid-container" id="artist-search">
+      <h4 class="main-title">Top Artists</h4>
+      <div
+        id="cards-group"
+        class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-4"
+      ></div>
+    </article> -->
 
-        <!-- CARDS CREATED DYNAMICALLY GO HERE -->
-
-        <!-- <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Artist</h5>
-        </div>
-
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #2</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #3</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #4</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #5</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #6</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #7</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #8</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #9</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #10</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #11</h5>
-        </div>
-        <div class="cell">
-          <img class="thumbnail" src="https://placehold.it/550x550" />
-          <h5>Arist #12</h5>
-        </div> -->
-      </div>
-    </article>
-
-    <article class="grid-container" id="artist-details">
-      <!-- <div class="grid-x cell">
-        <nav aria-label="You are here:" role="navigation">
-          <ul class="breadcrumbs">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Features</a></li>
-            <li class="disabled">Gene Splicing</li>
-            <li><span class="show-for-sr">Current: </span> Cloning</li>
-          </ul>
-        </nav>
-      </div> -->
+    <!-- <article class="grid-container" id="artist-details">
       <div class="grid-x grid-margin-x">
         <div class="medium-6 cell">
           <img class="thumbnail" src="https://placehold.it/650x350" />
@@ -232,6 +179,7 @@
             </div>
           </div>
         </div>
+
         <div class="medium-6 large-5 cell large-offset-1">
           <h3>Artist</h3>
           <p id="artist-genre">Genre: Pop</p>
@@ -248,35 +196,12 @@
             Debitis tenetur quaerat quod quae. Doloremque, cumque!
           </p>
 
-          <!-- <label
-            >Size
-            <select>
-              <option value="husker">Small</option>
-              <option value="starbuck">Medium</option>
-              <option value="hotdog">Large</option>
-              <option value="apollo">Yeti</option>
-            </select>
-          </label>
-
-          <div class="grid-x">
-            <div class="small-3 cell">
-              <label for="middle-label" class="middle">Quantity</label>
-            </div>
-            <div class="small-9 cell">
-              <input
-                type="text"
-                id="middle-label"
-                placeholder="One fish two fish"
-              />
-            </div>
-          </div> -->
-
           <a href="#" class="button large expanded">ConcertHunt</a>
 
           <div class="small secondary expanded button-group">
-            <a class="button">Facebook</a>
-            <a class="button">Twitter</a>
-            <a class="button">Yo</a>
+            <a class="button" id="facebook-button">Facebook</a>
+            <a class="button" id="twitter-button">Twitter</a>
+            <a class="button" id="yo-button">Yo</a>
           </div>
         </div>
       </div>
@@ -424,80 +349,17 @@
       </div>
 
       <hr />
+    </article> -->
 
-      <!-- <div class="grid-x align-justify align-middle">
-        <div class="small-12 medium-shrink cell">
-          <ul class="menu">
-            <li class="align-self-middle">Yeti Store</li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="small-12 medium-shrink cell">
-          <span>Copyright 2018</span>
-        </div>
-      </div> -->
-      <!-- <div class="grid-x grid-margin-x">
-        <div class="medium-6 cell">
-          <h3>Contact Concert Hunt</h3>
-          <p>
-            Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque
-            eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.
-            Phasellus molestie magna non est bibendum non venenatis nisl tempor.
-            Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis
-            porttitor.
-          </p>
-          <ul class="menu">
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Instagram</a></li>
-          </ul>
-        </div>
-        <div class="medium-6 cell">
-          <label
-            >Name
-            <input type="text" placeholder="Name" />
-          </label>
-          <label
-            >Email
-            <input type="text" placeholder="Email" />
-          </label>
-          <label>
-            Message
-            <textarea placeholder="holla at a designer"></textarea>
-          </label>
-          <input type="submit" class="button expanded" value="Submit" />
-        </div>
-      </div> -->
-    </article>
-
-<<<<<<< HEAD
     <!-- <footer>
-=======
-    <footer id="footer">
->>>>>>> 3359cbf747b92a1105c03a3a8cb1abe18b782ff7
-      <p>© ConcertHunt 2020</p>
-    </footer> -->
-
-    <footer>
       <div class="grid-x grid-margin-y expanded footer">
-        <!-- <div class="medium-6 cell">
-          <ul class="menu">
-            <li><a href="#">Legal</a></li>
-            <li><a href="#">Partner</a></li>
-            <li><a href="#">Explore</a></li>
-          </ul>
-        </div> -->
-
         <div class="medium-12 cell copyright">
           <ul class="menu align-center">
             <li class="menu-text">Copyright © 2020 Concert Hunt</li>
           </ul>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
