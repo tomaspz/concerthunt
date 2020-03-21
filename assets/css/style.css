@@ -173,3 +173,11 @@ a {
 .cell {
   margin-bottom: 20px;
 }
+
+a {
+  color: #ffbe5c;
+}
+
+a:hover {
+  color: wheat;
+}

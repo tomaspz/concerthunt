@@ -34,11 +34,11 @@ $(document).ready(function() {
     return `<div class="cell"><img class="thumbnail" src="${image}"/><h5 class="artist-name">${artist}</h5></div>`;
   }
 
-  function createArtistInfoLFMEl(artist) {
+  function createArtistInfoLFMEl(object) {
     return ` <article class="grid-container" id="artist-details">
     <div class="grid-x grid-margin-x">
       <div class="medium-6 cell">
-        <img class="thumbnail" src="${artist.thumb_url}" />
+        <img class="thumbnail" src="https://placehold.it/650x350"/>
         <div class="grid-x grid-padding-x small-up-4">
           <div class="cell">
             <img src="https://placehold.it/250x200" />
@@ -56,20 +56,9 @@ $(document).ready(function() {
       </div>
 
       <div class="medium-6 large-5 cell large-offset-1">
-        <h3>Artist</h3>
-        <p id="artist-genre">Genre: Pop</p>
-        <p id="artist-info">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-          expedita est cum eos, nihil eaque fugiat culpa, velit cumque
-          recusandae aperiam dolore doloremque magni quaerat deleniti ab
-          maxime distinctio nemo assumenda officiis! Dolore, repellendus
-          nobis. Quae a, excepturi adipisci explicabo laudantium ratione?
-          Illo, magnam aspernatur harum dolor consequatur voluptatem totam
-          similique itaque praesentium ab suscipit laudantium tenetur
-          consectetur beatae est quam. Magni cumque ratione, maiores similique
-          aliquid voluptatibus nostrum rerum inventore deserunt quaerat.
-          Debitis tenetur quaerat quod quae. Doloremque, cumque!
-        </p>
+        <h3>${object.artist.name}</h3>
+        <p id="artist-genre">Genre: ${object.artist.tags.tag[0].name}</p>  
+        <p id="artist-info">${object.artist.bio.summary}</p>
 
         <a href="#" class="button large expanded">ConcertHunt</a>
 
@@ -243,8 +232,8 @@ $(document).ready(function() {
   //   });
   // }
 
-  function createArtistInfoLFMEl(artist) {
-    var queryLastFMURL =
+  function artistInfoQueryLFM(artist) {
+    var queryLFM =
       "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
       artist +
       "&api_key=" +
@@ -252,46 +241,46 @@ $(document).ready(function() {
       "&format=json";
 
     return $.ajax({
-      url: queryLastFMURL,
+      url: queryLFM,
       method: "GET"
     });
   }
 
   function getTopArtists() {
-    var queryTopURL =
+    var queryTopLFM =
       "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key=" +
       lastFmAPIKey +
       "&format=json";
 
     return $.ajax({
-      url: queryTopURL,
+      url: queryTopLFM,
       method: "GET"
     });
   }
 
   //calling 'artist' to get the photo
   function getArtistImage(artist) {
-    var queryBandsURL =
+    var queryImagesBIT =
       "https://rest.bandsintown.com/artists/" +
       artist +
       "?app_id=" +
       bandsAPIKey;
 
     return $.ajax({
-      url: queryBandsURL,
+      url: queryImagesBIT,
       method: "GET"
     });
   }
 
   function concertQueryBIT(artist) {
-    var queryConcertURL =
+    var queryConcertBIT =
       "https://rest.bandsintown.com/artists/" +
       artist +
       "/events?app_id=" +
       bandsAPIKey;
 
     return $.ajax({
-      url: queryConcertURL,
+      url: queryConcertBIT,
       method: "GET"
     }).then(function(concertResponse) {
       return concertResponse;
@@ -300,10 +289,12 @@ $(document).ready(function() {
 
   $("#searchBtn").on("click", function(event) {
     event.preventDefault();
-    $("content").empty();
+    $("#content").empty();
     // get artist name from input field
     var artist = $("#inputSearch").val();
     // console.log(artist);
+    
+    
 
     // artistQueryBIT(artist).then(function(artistResponseBIT) {
     //   var artistCard = createArtistInfo(artistResponseBIT);
@@ -318,8 +309,13 @@ $(document).ready(function() {
       console.log(concertResponseBIT);
     });
 
-    createArtistInfoLFMEl(artist).then(function(lastResponse) {
-      console.log(lastResponse);
+    artistInfoQueryLFM(artist).then(function(lastResponse) {
+      var artistInfoElem = createArtistInfoLFMEl(lastResponse);
+      // console.log("artistInfoElem: " + artistInfoElem)
+      $("#content").append(artistInfoElem);
+      // console.log(lastResponse);
     })
+    
+    
   });
 });
