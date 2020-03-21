@@ -1,9 +1,10 @@
-
-
 $(document).ready(function() {
-  
-  getTopArtists().then(function(response){
+  // var namesArray = [];
+  // var imageArray = [];
+
+  getTopArtists().then(function(response) {
     var topArtists = response.artists.artist;
+<<<<<<< HEAD
     console.log(topArtists);
     var namesArray = [];
     for(var i=0; i<topArtists.length ; i++){
@@ -15,28 +16,39 @@ $(document).ready(function() {
 
       // console.log(topArtists[i].image);
       $("#cards-group").append(cardEl);
+=======
+>>>>>>> 58bc1cc4fdb74c0a00c8c49399a4a06a6c0ae95b
 
+    for (var i = 0; i < topArtists.length; i++) {
+      var artist = topArtists[i].name;
+      // namesArray.push(artist);
+      getArtistImage(artist).then(function(response) {
+        var image = response.thumb_url;
+        var name = response.name;
+        // imageArray.push(response.thumb_url);
+        var cardEl = createCardTopArtists(name, image);
+        $("#cards-group").append(cardEl);
+      });
     }
   });
 
-  // getArtistInfo(artist).then(function (response) {
-  //   var artistInfo = response;
-  //   console.log(response);
-  // })
-
   // bandsintown API Key
   const bandsAPIKey = "7a94704114b40126fda0059aab05bb1c";
+  // lastFM API Key
   const lastFmAPIKey = "f73c832fa45f573c5aa8ef6885d8fab3";
 
   // create card for top artist on page load
-  function createCardTopArtists(artist) {
-    return `<div class="cell"><img class="thumbnail" src="${artist.image[4][`#text`]}"/><h5 class="artist-name">${artist.name}</h5></div>`
+  function createCardTopArtists(artist, image) {
+    return `<div class="cell"><img class="thumbnail" src="${image}"/><h5 class="artist-name">${artist}</h5></div>`;
   }
 
   function artistQueryLastFM(artist) {
-
     var queryLastFMURL =
-      "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=" + lastFmAPIKey + "&format=json";
+      "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
+      artist +
+      "&api_key=" +
+      lastFmAPIKey +
+      "&format=json";
 
     return $.ajax({
       url: queryLastFMURL,
@@ -47,6 +59,7 @@ $(document).ready(function() {
   }
 
   function getTopArtists() {
+<<<<<<< HEAD
     var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key=f73c832fa45f573c5aa8ef6885d8fab3&format=json";
 
     return $.ajax({
@@ -57,15 +70,19 @@ $(document).ready(function() {
 
   function getArtistInfo(artist){
     var queryTopURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=f73c832fa45f573c5aa8ef6885d8fab3&format=json";
+=======
+    var queryTopURL =
+      "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key= f73c832fa45f573c5aa8ef6885d8fab3&format=json";
+>>>>>>> 58bc1cc4fdb74c0a00c8c49399a4a06a6c0ae95b
 
     return $.ajax({
       url: queryTopURL,
       method: "GET"
-    })
+    });
   }
 
-  function artistQueryBIT(artist) {
-
+  //calling 'artist' to get the photo
+  function getArtistImage(artist) {
     var queryBandsURL =
       "https://rest.bandsintown.com/artists/" +
       artist +
@@ -75,17 +92,15 @@ $(document).ready(function() {
     return $.ajax({
       url: queryBandsURL,
       method: "GET"
-    }).then(function(bandsResponse) {
-      return bandsResponse;
     });
   }
 
-  function concertQueryBIT(artist){
+  function concertQueryBIT(artist) {
     var queryConcertURL =
-    "https://rest.bandsintown.com/artists/" +
-    artist +
-    "/events?app_id=" +
-    bandsAPIKey;
+      "https://rest.bandsintown.com/artists/" +
+      artist +
+      "/events?app_id=" +
+      bandsAPIKey;
 
     return $.ajax({
       url: queryConcertURL,
@@ -96,23 +111,22 @@ $(document).ready(function() {
   }
 
   $("#searchBtn").on("click", function(event) {
-
     event.preventDefault();
 
     // get artist name from input field
     var artist = $("#inputSearch").val();
     // console.log(artist);
 
-    artistQueryBIT(artist).then(function(artistResponseBIT){
-      var artistCard = createCard(artistResponseBIT);
+    artistQueryBIT(artist).then(function(artistResponseBIT) {
+      var artistCard = createCard("hello cher" + artistResponseBIT);
       $("#cards-group").prepend(artistCard);
     });
 
-    artistQueryLastFM(artist).then(function(artistResponseLFM){
+    artistQueryLastFM(artist).then(function(artistResponseLFM) {
       console.log(artistResponseLFM);
     });
 
-    concertQueryBIT(artist).then(function(concertResponseBIT){
+    concertQueryBIT(artist).then(function(concertResponseBIT) {
       console.log(concertResponseBIT);
     });
   });
