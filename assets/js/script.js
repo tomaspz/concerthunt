@@ -7,20 +7,15 @@ $(document).ready(function() {
   // lastFM API Key
   const lastFmAPIKey = "f73c832fa45f573c5aa8ef6885d8fab3";
 
-  var footer = function createFooter() {
-    return `<footer><div class='grid-x grid-margin-y expanded footer'><div class='medium-12 cell copyright'><ul class='menu align-center'><li class='menu-text'>Copyright © 2020 Concert Hunt</li></ul></div></div></footer>`;
-  };
-
   getTopArtists().then(function(response) {
     var topArtists = response.artists.artist;
     console.log(response);
 
     var articleTitle = $(
-      "<article class='grid-container' id='artist-search'><h4 class='main-title'>Top Artists</h4><div id='cards-group' class='grid-x grid-margin-x small-up-2 medium-up-3 large-up-4'></div></article>" +
-        footer()
+      "<article class='grid-container' id='artist-search'><h2 class='main-title'><strong>Top Artists</strong></h2><div id='cards-group' class='grid-x grid-margin-x small-up-2 medium-up-3 large-up-4'></div></article>"
     );
 
-    $("body").append(articleTitle);
+    $("main").append(articleTitle);
     for (var i = 0; i < topArtists.length; i++) {
       var artist = topArtists[i].name;
       // namesArray.push(artist);
