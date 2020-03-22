@@ -181,3 +181,7 @@ a {
 a:hover {
   color: wheat;
 }
+
+.concert-info {
+  justify-items: center;
+}

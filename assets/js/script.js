@@ -72,92 +72,6 @@ $(document).ready(function() {
 
     <div class="tabs-section">
       <hr />
-      <ul
-        class="tabs"
-        data-tabs=""
-        id="artist-tabs"
-        role="tablist"
-        data-e="kts49s-e"
-      >
-        <li class="tabs-title is-active" role="presentation">
-          <a
-            href="#review-panel"
-            aria-selected="false"
-            role="tab"
-            aria-controls="panel1"
-            id="review-panel-label"
-            tabindex="0"
-            >Reviews</a
-          >
-        </li>
-        <li class="tabs-title" role="presentation">
-          <a
-            href="#concert-panel"
-            role="tab"
-            aria-controls="panel2"
-            aria-selected="true"
-            id="concert-panel-label"
-            tabindex="-1"
-            >Concerts</a
-          >
-        </li>
-      </ul>
-      <div class="tabs-content" data-tabs-content="tabs">
-        <div
-          class="tabs-panel"
-          id="review-panel"
-          role="tabpanel"
-          aria-labelledby="panel1-label"
-        >
-          <h4>Reviews</h4>
-          <div class="media-object stack-for-small">
-            <div class="media-object-section">
-              <img class="thumbnail" src="https://placehold.it/200x200" />
-            </div>
-            <div class="media-object-section">
-              <h5>Artist Reviewer #1</h5>
-              <p>
-                I'm going to improvise. Listen, there's something you should
-                know about me... about inception. An idea is like a virus,
-                resilient, highly contagious. The smallest seed of an idea can
-                grow. It can grow to define or destroy you.
-              </p>
-            </div>
-          </div>
-          <div class="media-object stack-for-small">
-            <div class="media-object-section">
-              <img class="thumbnail" src="https://placehold.it/200x200" />
-            </div>
-            <div class="media-object-section">
-              <h5>Artist Reviewer #2</h5>
-              <p>
-                I'm going to improvise. Listen, there's something you should
-                know about me... about inception. An idea is like a virus,
-                resilient, highly contagious. The smallest seed of an idea can
-                grow. It can grow to define or destroy you
-              </p>
-            </div>
-          </div>
-          <div class="media-object stack-for-small">
-            <div class="media-object-section">
-              <img class="thumbnail" src="https://placehold.it/200x200" />
-            </div>
-            <div class="media-object-section">
-              <h5>Artist Reviewer #3</h5>
-              <p>
-                I'm going to improvise. Listen, there's something you should
-                know about me... about inception. An idea is like a virus,
-                resilient, highly contagious. The smallest seed of an idea can
-                grow. It can grow to define or destroy you
-              </p>
-            </div>
-          </div>
-          <label>
-            My Review
-            <textarea placeholder="None"></textarea>
-          </label>
-          <button class="button">Submit Review</button>
-        </div>
         <div
           class="tabs-panel is-active"
           id="panel2"
@@ -166,47 +80,44 @@ $(document).ready(function() {
           aria-hidden="true"
         >
           <h4>Concerts</h4>
+
+          <hr>
+
+          <div class="concert-info">
+
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <img class="thumbnail" src="https://placehold.it/200x200" />
+              <a id="button1" class="button">Buy Tickets</a>
             </div>
             <div class="media-object-section">
-              <h5>Artist Concert #1</h5>
-              <p>
-                I'm going to improvise. Listen, there's something you should
-                know about me... about inception. An idea is like a virus,
-                resilient, highly contagious. The smallest seed of an idea can
-                grow. It can grow to define or destroy you.
-              </p>
+              <h5 id="date-time1"></h5>
+              <p id="venue1"></p>
             </div>
           </div>
+
+          <hr>
+
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <img class="thumbnail" src="https://placehold.it/200x200" />
+            <a id="button2" class="button">Buy Tickets</a>
             </div>
             <div class="media-object-section">
-              <h5>Artist Concert #2</h5>
-              <p>
-                I'm going to improvise. Listen, there's something you should
-                know about me... about inception. An idea is like a virus,
-                resilient, highly contagious. The smallest seed of an idea can
-                grow. It can grow to define or destroy you
-              </p>
+              <h5 id="date-time2"></h5>
+              <p id="venue2"></p>
             </div>
           </div>
+
+          <hr>
+
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <img class="thumbnail" src="https://placehold.it/200x200" />
+              <a id="button3" class="button">Buy Tickets</a>
             </div>
             <div class="media-object-section">
-              <h5>Artist Concert #3</h5>
-              <p>
-                I'm going to improvise. Listen, there's something you should
-                know about me... about inception. An idea is like a virus,
-                resilient, highly contagious. The smallest seed of an idea can
-                grow. It can grow to define or destroy you
-              </p>
+              <h5 id="date-time3"></h5>
+              <p id="venue3"></p>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -283,7 +194,7 @@ $(document).ready(function() {
       method: "GET"
     });
   }
-
+//calling concert + concertinfo
   function concertQueryBIT(artist) {
     var queryConcertBIT =
       "https://rest.bandsintown.com/artists/" +
@@ -318,9 +229,7 @@ $(document).ready(function() {
     //   console.log(artistResponseLFM);
     // });
 
-    concertQueryBIT(artist).then(function(concertResponseBIT) {
-      console.log(concertResponseBIT);
-    });
+  
 
     artistInfoQueryLFM(artist).then(function(lastResponse) {
       var artistInfoElem = createArtistInfoLFMEl(lastResponse);
@@ -346,6 +255,32 @@ $(document).ready(function() {
         }
 
       })
+
+      concertQueryBIT(artist).then(function(concertResponseBIT) {
+        console.log(concertResponseBIT);
+        var buyTickets = [];
+        var dateArray = [];
+        var venueNameArray = [];
+        var venueCityArray = [];
+        var venueCountryArray = [];
+
+        for(var i=0; i<3; i++){
+          buyTickets.push(concertResponseBIT[i].offers[0].url);
+          $("#button"+(i+1)).attr("href", buyTickets[i]);
+
+          var concertDate = moment(concertResponseBIT[i].datetime).format('dddd, MMMM Do, YYYY, h:mm a');
+          dateArray.push(concertDate);
+          $("#date-time"+(i+1)).append(dateArray[i]);
+
+          venueNameArray.push(concertResponseBIT[i].venue.name);
+          venueCityArray.push(concertResponseBIT[i].venue.city);
+          venueCountryArray.push(concertResponseBIT[i].venue.country);
+          $("#venue"+(i+1)).append("Venue: "+ venueNameArray[i] + " - ");
+          $("#venue"+(i+1)).append(venueCityArray[i] + ", ");
+          $("#venue"+(i+1)).append(venueCountryArray[i] + ".");
+        }
+        
+      });
       // console.log("artistInfoElem: " + artistInfoElem)
       $("#content").append(artistInfoElem);
       // console.log(lastResponse);
