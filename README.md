@@ -1,4 +1,19 @@
-# Project-1-ConcertHunt
+# ConcertHunt
+
+Listen to your favorite music live
+
+### Description
+
+Providing an all-in-one platform to search for concerts for your favorite artists and easily purchase concert tickets
+
+Includes:
+-artists
+-artist genre
+-artist info
+-albumn pictures
+-social media links to artist
+-upcoming concerts
+-links to purchase concert tickets
 
 ## Wireframes & Color Palette
 
@@ -16,18 +31,30 @@
 ## User Story
 
 ```
-GIVEN I have a list of my favorite artists/songs
-WHEN I search for the artist/song-title
-THEN I want to receive all relevant artists/song-title
-WHEN I click on the artist/song-title
-THEN I want to go to the artists page
-WHEN I look up artists/songs
-THEN  I can look in local storage for saved data
+GIVEN I want to attend my favorite artists concerts
+WHEN I search for the artist
+THEN I want to receive relevant artists info
 WHEN I click on the artist
-THEN I can play a track or music video
+THEN I want to go to the artist's info page
+WHEN I am on the artist's info page
+THEN I can view if the artist has an upcoming concerts
 WHEN the artist has an upcoming concert performance
-THEN I want to receive concert information on the artist’s page
+THEN I receive concert info and a link to purchase tickets
 
 ```
 
-### Description
+
+## GitHub Repository URL
+
+```
+https://github.com/tomaspz/concerthunt
+
+```
+
+## Deployed App URL
+
+```
+https://tomaspz.github.io/concerthunt/
+
+
+```
