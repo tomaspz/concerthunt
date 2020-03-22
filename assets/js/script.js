@@ -37,26 +37,26 @@ $(document).ready(function() {
   function createArtistInfoLFMEl(obj) {
     return ` <article class="grid-container" id="artist-details">
     <div class="grid-x grid-margin-x">
-      <div class="medium-6 cell">
+      <div class="medium-6 cell" id="artist-images">
         <img id="artist-650" class="thumbnail" src="" alt="${obj.artist.name}"/>
         <div class="grid-x grid-padding-x small-up-4">
           <div class="cell">
-            <img id="album1" alt="album cover 1"/>
+            <img id="album1" alt="artist album cover 1"/>
           </div>
           <div class="cell">
-            <img id="album2" alt="album cover 2"/>
+            <img id="album2" alt="artist album cover 2"/>
           </div>
           <div class="cell">
-            <img id="album3" alt="album cover 3" />
+            <img id="album3" alt="artist album cover 3" />
           </div>
           <div class="cell">
-            <img id="album4" alt="album cover 4" />
+            <img id="album4" alt="artist album cover 4" />
           </div>
         </div>
       </div>
 
       <div class="medium-6 large-5 cell large-offset-1">
-        <h3>${obj.artist.name}</h3>
+        <h2>${obj.artist.name}</h2>
         <p id="artist-genre">Genre: ${obj.artist.tags.tag[0].name}</p>  
         <p id="artist-info">${obj.artist.bio.summary}</p>
 
@@ -74,12 +74,12 @@ $(document).ready(function() {
       <hr />
         <div
           class="tabs-panel is-active"
-          id="panel2"
+          id="artist-concerts"
           role="concert-panel"
           aria-labelledby="panel2-label"
           aria-hidden="true"
         >
-          <h4>Concerts</h4>
+          <h2>Concerts</h2>
 
           <hr>
 
@@ -87,23 +87,19 @@ $(document).ready(function() {
 
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <a id="button1" class="button">Buy Tickets</a>
-            </div>
-            <div class="media-object-section">
               <h5 id="date-time1"></h5>
               <p id="venue1"></p>
+              <a id="button1" class="button">Buy Tickets</a>
             </div>
           </div>
 
           <hr>
 
           <div class="media-object stack-for-small">
-            <div class="media-object-section">
-            <a id="button2" class="button">Buy Tickets</a>
-            </div>
             <div class="media-object-section">
               <h5 id="date-time2"></h5>
               <p id="venue2"></p>
+              <a id="button2" class="button">Buy Tickets</a>
             </div>
           </div>
 
@@ -111,11 +107,9 @@ $(document).ready(function() {
 
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <a id="button3" class="button">Buy Tickets</a>
-            </div>
-            <div class="media-object-section">
               <h5 id="date-time3"></h5>
               <p id="venue3"></p>
+              <a id="button3" class="button">Buy Tickets</a>
             </div>
           </div>
           </div>
@@ -186,15 +180,18 @@ $(document).ready(function() {
   //calling 'albums' to get the photo
   function getAlbumImagesLFM(artist) {
     var queryAlbumsLFM =
-      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist="+
-      artist + "&api_key=" + lastFmAPIKey +"&format=json";
+      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
+      artist +
+      "&api_key=" +
+      lastFmAPIKey +
+      "&format=json";
 
     return $.ajax({
       url: queryAlbumsLFM,
       method: "GET"
     });
   }
-//calling concert + concertinfo
+  //calling concert + concertinfo
   function concertQueryBIT(artist) {
     var queryConcertBIT =
       "https://rest.bandsintown.com/artists/" +
@@ -217,8 +214,6 @@ $(document).ready(function() {
     // get artist name from input field
     var artist = $("#inputSearch").val();
     // console.log(artist);
-    
-    
 
     // artistQueryBIT(artist).then(function(artistResponseBIT) {
     //   var artistCard = createArtistInfo(artistResponseBIT);
@@ -229,14 +224,14 @@ $(document).ready(function() {
     //   console.log(artistResponseLFM);
     // });
 
-  
-
     artistInfoQueryLFM(artist).then(function(lastResponse) {
       var artistInfoElem = createArtistInfoLFMEl(lastResponse);
-      
+
       getArtistImage(artist).then(function(response) {
         var image = response.thumb_url;
-        $("#artist-650").attr("src", image).append(image);
+        $("#artist-650")
+          .attr("src", image)
+          .append(image);
         console.log(image);
         var name = response.name;
         console.log(name);
@@ -245,16 +240,27 @@ $(document).ready(function() {
         // $("#cards-group").append(cardEl);
       });
 
-      getAlbumImagesLFM(artist).then(function(resp){
+      getAlbumImagesLFM(artist).then(function(resp) {
         console.log(resp);
         var images = [];
-        for(var i=0; i<4; i++){
+        for (var i = 0; i < 4; i++) {
           images.push(resp.topalbums.album[i].image[2][`#text`]);
           console.log(resp.topalbums.album[i].image[2][`#text`]);
-          $("#album"+(i+1)).attr("src", images[i]).append(images[i]);
+          $("#album" + (i + 1))
+            .attr("src", images[i])
+            .append(images[i]);
+          $("#album" + (i + 1)).wrap(
+            $("<a>", {
+              href: resp.topalbums.album[i].url
+            })
+          );
         }
+      });
 
-      })
+      // getAlbumImageLinkLFM(artist).then(function(albumResp) {
+      //   $("#album-link" + (i + 1))
+      //   .attr("href", link[i]);
+      // })
 
       concertQueryBIT(artist).then(function(concertResponseBIT) {
         console.log(concertResponseBIT);
@@ -264,30 +270,27 @@ $(document).ready(function() {
         var venueCityArray = [];
         var venueCountryArray = [];
 
-        for(var i=0; i<3; i++){
-          buyTickets.push(concertResponseBIT[i].offers[0].url);
-          $("#button"+(i+1)).attr("href", buyTickets[i]);
-
-          var concertDate = moment(concertResponseBIT[i].datetime).format('dddd, MMMM Do, YYYY, h:mm a');
+        for (var i = 0; i < 3; i++) {
+          var concertDate = moment(concertResponseBIT[i].datetime).format(
+            "dddd, MMMM Do, YYYY, h:mm a"
+          );
           dateArray.push(concertDate);
-          $("#date-time"+(i+1)).append(dateArray[i]);
+          $("#date-time" + (i + 1)).append(dateArray[i]);
 
           venueNameArray.push(concertResponseBIT[i].venue.name);
           venueCityArray.push(concertResponseBIT[i].venue.city);
           venueCountryArray.push(concertResponseBIT[i].venue.country);
-          $("#venue"+(i+1)).append("Venue: "+ venueNameArray[i] + " - ");
-          $("#venue"+(i+1)).append(venueCityArray[i] + ", ");
-          $("#venue"+(i+1)).append(venueCountryArray[i] + ".");
+          $("#venue" + (i + 1)).append("Venue: " + venueNameArray[i] + " - ");
+          $("#venue" + (i + 1)).append(venueCityArray[i] + ", ");
+          $("#venue" + (i + 1)).append(venueCountryArray[i] + ".");
+
+          buyTickets.push(concertResponseBIT[i].offers[0].url);
+          $("#button" + (i + 1)).attr("href", buyTickets[i]);
         }
-        
       });
       // console.log("artistInfoElem: " + artistInfoElem)
       $("#content").append(artistInfoElem);
       // console.log(lastResponse);
-
-       
-    })
-    
-    
+    });
   });
 });

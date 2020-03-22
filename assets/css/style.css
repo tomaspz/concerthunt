@@ -35,6 +35,10 @@ main {
   );
 }
 
+.media-object {
+  display: inline-block;
+}
+
 .top-bar
 input {
   margin-right: 0;
@@ -140,6 +144,17 @@ input {
 #artist-search,
 #artist-details {
   margin-top: 30px;
+}
+
+#artist-images {
+  text-align: center;
+}
+
+#artist-details {
+  justify-content: center;
+}
+
+#artist-concerts {
   text-align: center;
 }
 
