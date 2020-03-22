@@ -224,13 +224,11 @@ $(document).ready(function() {
         let image = response.thumb_url;
         let name = response.name;
         // ADD THE SOURCE ATTRIBUTE TO THE IMAGE AND APPEND IT TO THE DOM
-        $("#artist-650")
-          .attr("src", image)
-          .append(image);
+        $("#artist-650").attr("src", image).append(image);
       });
 
       // GET ALBUM IMAGES FROM LAST FM, ADD IMAGES TO AN ARRAY AND APPEND THEM TO THE DOM WITH THE SOURCE ATTRIBUTE
-      getAlbumImagesLFM(artist).then(function(resp) {
+      getAlbumImagesLFM(artist).then(function(resp){
         var images = [];
         for (var i = 0; i < 4; i++) {
           images.push(resp.topalbums.album[i].image[2][`#text`]);
