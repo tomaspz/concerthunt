@@ -105,8 +105,8 @@ $(document).ready(function () {
 
             for (var i = 0; i < concertResponseBIT.length; i++) {
 
-              $("#facebook-link").attr("href", concertResponseBIT[i].artist.facebook_page_url);
-              $("#bandsintown-link").attr("href", concertResponseBIT[i].artist.url);
+              $("#facebook-link").attr("href", concertResponseBIT[0].artist.facebook_page_url);
+              $("#bandsintown-link").attr("href", concertResponseBIT[0].artist.url);
               var concertDate = moment(concertResponseBIT[i].datetime).format(
                 "dddd, MMMM Do, YYYY, h:mm a"
               );
@@ -199,8 +199,8 @@ function showTopAristInfo(artist) {
 
         for (var i = 0; i < concertResponseBIT.length; i++) {
 
-          $("#facebook-link").attr("href", concertResponseBIT[i].artist.facebook_page_url);
-          $("#bandsintown-link").attr("href", concertResponseBIT[i].artist.url);
+          $("#facebook-link").attr("href", concertResponseBIT[0].artist.facebook_page_url);
+          $("#bandsintown-link").attr("href", concertResponseBIT[0].artist.url);
           var concertDate = moment(concertResponseBIT[i].datetime).format(
             "dddd, MMMM Do, YYYY, h:mm a"
           );
