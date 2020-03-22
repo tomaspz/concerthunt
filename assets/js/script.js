@@ -180,7 +180,7 @@ $(document).ready(function() {
   //calling 'albums' to get the photo
   function getAlbumImagesLFM(artist) {
     var queryAlbumsLFM =
-      "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
+      "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
       artist +
       "&api_key=" +
       lastFmAPIKey +
