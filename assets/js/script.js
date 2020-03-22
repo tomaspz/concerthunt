@@ -79,7 +79,7 @@ $(document).ready(function() {
           aria-labelledby="panel2-label"
           aria-hidden="true"
         >
-          <h2>Concerts</h2>
+          <h2 id="concerts"></h2>
 
           <hr>
 
@@ -270,10 +270,24 @@ $(document).ready(function() {
         var venueCityArray = [];
         var venueCountryArray = [];
 
+
+        $("#concerts").append("Whoops! Looks liked there are no upcoming concerts for " + artist);
         for (var i = 0; i < 3; i++) {
-          var concertDate = moment(concertResponseBIT[i].datetime).format(
-            "dddd, MMMM Do, YYYY, h:mm a"
-          );
+
+          if (concertResponseBIT.length ==0) {
+            $(".concert-info").empty();
+            
+            
+            
+
+          } else {
+            
+            $("#concerts").empty();
+            $("#concerts").append("Concerts for " + artist);
+            var concertDate = moment(concertResponseBIT[i].datetime).format(
+              "dddd, MMMM Do, YYYY, h:mm a"
+            );
+
           dateArray.push(concertDate);
           $("#date-time" + (i + 1)).append(dateArray[i]);
 
@@ -287,6 +301,7 @@ $(document).ready(function() {
           buyTickets.push(concertResponseBIT[i].offers[0].url);
           $("#button" + (i + 1)).attr("href", buyTickets[i]);
         }
+      }
       });
       // console.log("artistInfoElem: " + artistInfoElem)
       $("#content").append(artistInfoElem);
