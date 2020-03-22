@@ -158,6 +158,19 @@ input {
   text-align: center;
 }
 
+
+#facebook-link {
+  background-color: #47639e;
+}
+
+#bandsintown-link {
+  background-color: #00b4b3;
+}
+
+#lastfm-link {
+  background-color: #ba0000;
+}
+
 .tabs-title 
 a {
   color: #ffbe5c;
