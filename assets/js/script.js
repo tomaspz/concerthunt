@@ -205,15 +205,15 @@ function showTopAristInfo(artist) {
             "dddd, MMMM Do, YYYY, h:mm a"
           );
 
-          dateArray.push(concertDate);
-          $("#date-time" + (i + 1)).append(dateArray[i]);
+            dateArray.push(concertDate);
+            $("#date-time" + (i + 1)).append(dateArray[i]);
 
-          venueNameArray.push(concertResponseBIT[i].venue.name);
-          venueCityArray.push(concertResponseBIT[i].venue.city);
-          venueCountryArray.push(concertResponseBIT[i].venue.country);
-          $("#venue" + (i + 1)).append("Venue: " + venueNameArray[i] + " - ");
-          $("#venue" + (i + 1)).append(venueCityArray[i] + ", ");
-          $("#venue" + (i + 1)).append(venueCountryArray[i] + ".");
+            venueNameArray.push(concertResponseBIT[i].venue.name);
+            venueCityArray.push(concertResponseBIT[i].venue.city);
+            venueCountryArray.push(concertResponseBIT[i].venue.country);
+            $("#venue" + (i + 1)).append("Venue: " + venueNameArray[i] + " - ");
+            $("#venue" + (i + 1)).append(venueCityArray[i] + ", ");
+            $("#venue" + (i + 1)).append(venueCountryArray[i] + ".");
 
           buyTickets.push(concertResponseBIT[i].offers[0].url);
           $("#button" + (i + 1)).attr("href", buyTickets[i]);
