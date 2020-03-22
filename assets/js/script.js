@@ -1,39 +1,52 @@
 $(document).ready(function() {
-  // var namesArray = [];
-  // var imageArray = [];
 
-  // bandsintown API Key
+  // API KEYS
   const bandsAPIKey = "7a94704114b40126fda0059aab05bb1c";
-  // lastFM API Key
   const lastFmAPIKey = "f73c832fa45f573c5aa8ef6885d8fab3";
 
+  // GET THE TOP ARTISTS RESPONSE FROM LAST FM
   getTopArtists().then(function(response) {
-    var topArtists = response.artists.artist;
-    console.log(response);
 
+    // ARRAY OF 12 TOP ARTISTS
+    var topArtists = response.artists.artist;
+
+    // CREATE THE SECTION TITLE
     var articleTitle = $(
       "<article class='grid-container' id='artist-search'><h2 class='main-title'><strong>Top Artists</strong></h2><div id='cards-group' class='grid-x grid-margin-x small-up-2 medium-up-3 large-up-4'></div></article>"
     );
-
+    
+    // APPEND THE TITLE TO THE MAIN TAG
     $("main").append(articleTitle);
+    
+    // LOOP TROUGH THE TOP ARTISTS ARRAY 
     for (var i = 0; i < topArtists.length; i++) {
-      var artist = topArtists[i].name;
-      // namesArray.push(artist);
-      getArtistImage(artist).then(function(response) {
-        var image = response.thumb_url;
-        var name = response.name;
-        // imageArray.push(response.thumb_url);
-        var cardEl = createCardTopArtists(name, image);
+      
+      let artistName = topArtists[i].name;
+      let artistURL = topArtists[i].url;
+     
+      // GET THE ARTIST NAME,IMAGE AND URL
+      getArtistImage(artistName).then(function(imageResp) { 
+        let obj = {
+          image: imageResp.thumb_url,
+          name: imageResp.name,
+          url: artistURL
+        }
+
+        // CREATE THE CARD FOR EACH ARTIST
+        var cardEl = createCardTopArtists(obj.name, obj.image, obj.url);
+
+        // APPEND THE ARTIST CARD TO THE DOM
         $("#cards-group").append(cardEl);
       });
     }
   });
 
-  // create card for top artist on page load
-  function createCardTopArtists(artist, image) {
-    return `<div class="cell"><img class="thumbnail" src="${image}"/><h5 class="artist-name">${artist}</h5></div>`;
+  // FUNCTION TO CREATE THE HTML ARTIST CARD
+  function createCardTopArtists(artist, image, url) {
+    return `<div class="cell"><a href="${url}"><img class="thumbnail" src="${image}"/><h5 class="artist-name">${artist}</h5></a></div>`;
   }
 
+  // FUNCTION TO CREATE THE HTML ARTIST INFO PAGE
   function createArtistInfoLFMEl(obj) {
     return ` <article class="grid-container" id="artist-details">
     <div class="grid-x grid-margin-x">
@@ -121,22 +134,7 @@ $(document).ready(function() {
   </article>`;
   }
 
-  // function artistQueryLastFM(artist) {
-  //   var queryLastFMURL =
-  //     "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
-  //     artist +
-  //     "&api_key=" +
-  //     lastFmAPIKey +
-  //     "&format=json";
-
-  //   return $.ajax({
-  //     url: queryLastFMURL,
-  //     method: "GET"
-  //   }).then(function(lastResponse) {
-  //     return lastResponse;
-  //   });
-  // }
-
+  // FUNCTION TO QUERY ARTIST INFO FROM LAST FM
   function artistInfoQueryLFM(artist) {
     var queryLFM =
       "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
@@ -151,6 +149,7 @@ $(document).ready(function() {
     });
   }
 
+  // FUNCTION TO QUERY TOP ARTISTS FROM LAST FM
   function getTopArtists() {
     var queryTopLFM =
       "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=12&api_key=" +
@@ -163,7 +162,7 @@ $(document).ready(function() {
     });
   }
 
-  //calling 'artist' to get the photo
+  // FUNCTION TO QUERY ARTIST IMAGES FROM BANDSINTOWN  
   function getArtistImage(artist) {
     var queryImagesBIT =
       "https://rest.bandsintown.com/artists/" +
@@ -177,7 +176,7 @@ $(document).ready(function() {
     });
   }
 
-  //calling 'albums' to get the photo
+  // FUNCTION TO QUERY ALBUM INFO FROM LAST FM
   function getAlbumImagesLFM(artist) {
     var queryAlbumsLFM =
       "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
@@ -191,7 +190,8 @@ $(document).ready(function() {
       method: "GET"
     });
   }
-  //calling concert + concertinfo
+
+  // FUNCTION TO QUERY CONCERT INFO FROM BANDSINTOWN
   function concertQueryBIT(artist) {
     var queryConcertBIT =
       "https://rest.bandsintown.com/artists/" +
@@ -210,38 +210,29 @@ $(document).ready(function() {
   // EVENT LISTENER ON THE SEARCH BUTTON
   $("#searchBtn").on("click", function(event) {
     event.preventDefault();
+
+    // EMPTY THE PAGE CONTENT
     $("#content").empty();
-    // get artist name from input field
-    var artist = $("#inputSearch").val();
-    // console.log(artist);
 
-    // artistQueryBIT(artist).then(function(artistResponseBIT) {
-    //   var artistCard = createArtistInfo(artistResponseBIT);
-    //   $("#cards-group").prepend(artistCard);
-    // });
+    // GET THE ARTIST NAME FROM INPUT FIELD
+    let artist = $("#inputSearch").val();
 
-    // artistQueryLastFM(artist).then(function(artistResponseLFM) {
-    //   console.log(artistResponseLFM);
-    // });
-
+    // GET THE ARTIST INFO RESPONSE FROM LAST FM
     artistInfoQueryLFM(artist).then(function(lastResponse) {
-      var artistInfoElem = createArtistInfoLFMEl(lastResponse);
 
+      // CREATE THE ARTIST INFO HTML ELEMENT
+      let artistInfoElem = createArtistInfoLFMEl(lastResponse);
+      
+      // GET ARTIST IMAGE FROM BANDSINTOWN
       getArtistImage(artist).then(function(response) {
-        var image = response.thumb_url;
-        $("#artist-650")
-          .attr("src", image)
-          .append(image);
-        console.log(image);
-        var name = response.name;
-        console.log(name);
-        // imageArray.push(response.thumb_url);
-        // var cardEl = createCardTopArtists(name, image);
-        // $("#cards-group").append(cardEl);
+        let image = response.thumb_url;
+        let name = response.name;
+        // ADD THE SOURCE ATTRIBUTE TO THE IMAGE AND APPEND IT TO THE DOM
+        $("#artist-650").attr("src", image).append(image);
       });
 
-      getAlbumImagesLFM(artist).then(function(resp) {
-        console.log(resp);
+      // GET ALBUM IMAGES FROM LAST FM, ADD IMAGES TO AN ARRAY AND APPEND THEM TO THE DOM WITH THE SOURCE ATTRIBUTE
+      getAlbumImagesLFM(artist).then(function(resp){
         var images = [];
         for (var i = 0; i < 4; i++) {
           images.push(resp.topalbums.album[i].image[2][`#text`]);
@@ -262,13 +253,16 @@ $(document).ready(function() {
       //   .attr("href", link[i]);
       // })
 
+      // GET CONCERT INFORMATION FROM BANDSINTOWN
       concertQueryBIT(artist).then(function(concertResponseBIT) {
-        console.log(concertResponseBIT);
-        var buyTickets = [];
-        var dateArray = [];
-        var venueNameArray = [];
-        var venueCityArray = [];
-        var venueCountryArray = [];
+        
+        let response = concertResponseBIT;
+        console.log(response);
+        let buyTickets = [];
+        let dateArray = [];
+        let venueNameArray = [];
+        let venueCityArray = [];
+        let venueCountryArray = [];
 
 
         $("#concerts").append("Whoops! Looks liked there are no upcoming concerts for " + artist);
