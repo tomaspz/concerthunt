@@ -1,8 +1,5 @@
 $(document).ready(function () {
 
-
-
-
   // GET THE TOP ARTISTS RESPONSE FROM LAST FM
   getTopArtists().then(function (response) {
     // ARRAY OF 12 TOP ARTISTS
@@ -85,51 +82,36 @@ $(document).ready(function () {
       });
 
       // GET CONCERT INFORMATION FROM BANDSINTOWN
-      concertQueryBIT(artist).then(function (concertResponseBIT) {
-        let response = concertResponseBIT;
-        console.log(response);
-        let buyTickets = [];
-        let dateArray = [];
-        let venueNameArray = [];
-        let venueCityArray = [];
-        let venueCountryArray = [];
+    concertQueryBIT(artist).then(function (concertResponseBIT) {
 
-          if (concertResponseBIT.length == 0) {
-            $(".concert-info").empty();
-            $("#concerts").append(
-              "Whoops! Looks like there are no upcoming concerts for " + artist
-            );
-          } else {
-            $("#concerts").empty();
-            $("#concerts").append("Concerts for " + artist);
+      if (concertResponseBIT.length == 0) {
+        $(".concert-info").empty();
+        $("#concerts").append(
+          "Whoops! Looks like there are no upcoming concerts for " + artist
+        );
+      } else {
+        $("#concerts").empty();
+        $("#concerts").append("Concerts for " + artist);
+        $("#facebook-link").attr("href", concertResponseBIT[0].artist.facebook_page_url);
+        $("#bandsintown-link").attr("href", concertResponseBIT[0].artist.url);
 
-            for (var i = 0; i < concertResponseBIT.length; i++) {
+        for (var i = 0; i < concertResponseBIT.length; i++) {
 
-              $("#facebook-link").attr("href", concertResponseBIT[0].artist.facebook_page_url);
-              $("#bandsintown-link").attr("href", concertResponseBIT[0].artist.url);
-              var concertDate = moment(concertResponseBIT[i].datetime).format(
-                "dddd, MMMM Do, YYYY, h:mm a"
-              );
+          let concertDate = moment(concertResponseBIT[i].datetime).format("dddd, MMMM Do, YYYY, h:mm a");
+          let venueName = concertResponseBIT[i].venue.name;
+          let venueCity = concertResponseBIT[i].venue.city;
+          let venueCountry = concertResponseBIT[i].venue.country;
+          let buyTickets = concertResponseBIT[i].offers[0].url;
 
-              dateArray.push(concertDate);
-              $("#date-time" + (i + 1)).append(dateArray[i]);
-
-              venueNameArray.push(concertResponseBIT[i].venue.name);
-              venueCityArray.push(concertResponseBIT[i].venue.city);
-              venueCountryArray.push(concertResponseBIT[i].venue.country);
-              $("#venue" + (i + 1)).append("Venue: " + venueNameArray[i] + " - ");
-              $("#venue" + (i + 1)).append(venueCityArray[i] + ", ");
-              $("#venue" + (i + 1)).append(venueCountryArray[i] + ".");
-
-              buyTickets.push(concertResponseBIT[i].offers[0].url);
-              $("#button" + (i + 1)).attr("href", buyTickets[i]);
-            
-          }
+          var concertInfoElem = $("<div class='media-object stack-for-small'><div class='media-object-section'><h5 id='date-time1'>"+ concertDate +"</h5><p id='venue'" + (i+1) + ">Venue: " + venueName +" - " + venueCity + ", " + venueCountry + "</p><a id='button"+(i+1)+"'class='button' href='"+ buyTickets +"' target='_blank'>Buy Tickets</a></div></div><hr>"); 
+          
+          $(".concert-info").append(concertInfoElem);
         }
-      });
-      // console.log("artistInfoElem: " + artistInfoElem)
+      }
+    }); // END OF CONCERT QUERY BIT
+      
       $("#content").append(artistInfoElem);
-      // console.log(lastResponse);
+      
     });
   });
 });
@@ -165,7 +147,7 @@ function showTopAristInfo(artist) {
       var images = [];
       for (var i = 0; i < 4; i++) {
         images.push(resp.topalbums.album[i].image[2][`#text`]);
-        console.log(resp.topalbums.album[i].image[2][`#text`]);
+        
         $("#album" + (i + 1))
           .attr("src", images[i])
           .append(images[i]);
@@ -180,13 +162,6 @@ function showTopAristInfo(artist) {
     // GET CONCERT INFORMATION FROM BANDSINTOWN
     concertQueryBIT(artist).then(function (concertResponseBIT) {
 
-      console.log(concertResponseBIT);
-      let buyTickets = [];
-      let dateArray = [];
-      let venueNameArray = [];
-      let venueCityArray = [];
-      let venueCountryArray = [];
-
       if (concertResponseBIT.length == 0) {
         $(".concert-info").empty();
         $("#concerts").append(
@@ -195,37 +170,27 @@ function showTopAristInfo(artist) {
       } else {
         $("#concerts").empty();
         $("#concerts").append("Concerts for " + artist);
-        
+        $("#facebook-link").attr("href", concertResponseBIT[0].artist.facebook_page_url);
+        $("#bandsintown-link").attr("href", concertResponseBIT[0].artist.url);
 
         for (var i = 0; i < concertResponseBIT.length; i++) {
 
-          $("#facebook-link").attr("href", concertResponseBIT[0].artist.facebook_page_url);
-          $("#bandsintown-link").attr("href", concertResponseBIT[0].artist.url);
-          var concertDate = moment(concertResponseBIT[i].datetime).format(
-            "dddd, MMMM Do, YYYY, h:mm a"
-          );
+          let concertDate = moment(concertResponseBIT[i].datetime).format("dddd, MMMM Do, YYYY, h:mm a");
+          let venueName = concertResponseBIT[i].venue.name;
+          let venueCity = concertResponseBIT[i].venue.city;
+          let venueCountry = concertResponseBIT[i].venue.country;
+          let buyTickets = concertResponseBIT[i].offers[0].url;
+          console.log(buyTickets);
 
-            dateArray.push(concertDate);
-            $("#date-time" + (i + 1)).append(dateArray[i]);
-
-            venueNameArray.push(concertResponseBIT[i].venue.name);
-            venueCityArray.push(concertResponseBIT[i].venue.city);
-            venueCountryArray.push(concertResponseBIT[i].venue.country);
-            $("#venue" + (i + 1)).append("Venue: " + venueNameArray[i] + " - ");
-            $("#venue" + (i + 1)).append(venueCityArray[i] + ", ");
-            $("#venue" + (i + 1)).append(venueCountryArray[i] + ".");
-
-          buyTickets.push(concertResponseBIT[i].offers[0].url);
-          $("#button" + (i + 1)).attr("href", buyTickets[i]);
-
+          var concertInfoElem = $("<div class='media-object stack-for-small'><div class='media-object-section'><h5 id='date-time1'>"+ concertDate +"</h5><p id='venue'" + (i+1) + ">Venue: " + venueName +" - " + venueCity + ", " + venueCountry + "</p><a id='button"+(i+1)+"'class='button' href='"+ buyTickets +"' target='_blank'>Buy Tickets</a></div></div><hr>"); 
+          
+          $(".concert-info").append(concertInfoElem);
         }
-
       }
     }); // END OF CONCERT QUERY BIT
 
-    // console.log("artistInfoElem: " + artistInfoElem)
     $("#content").append(artistInfoElem);
-    // console.log(lastResponse);
+    
   });
 }; // END OF FUNCTION SHOW TOP ARTIST INFO
 
@@ -286,34 +251,8 @@ function createArtistInfoLFMEl(obj) {
 
         <div class="concert-info">
 
-        <div class="media-object stack-for-small">
-          <div class="media-object-section">
-            <h5 id="date-time1"></h5>
-            <p id="venue1"></p>
-            <a id="button1" class="button" target="_blank">Buy Tickets</a>
-          </div>
         </div>
 
-        <hr>
-
-        <div class="media-object stack-for-small">
-          <div class="media-object-section">
-            <h5 id="date-time2"></h5>
-            <p id="venue2"></p>
-            <a id="button2" class="button" target="_blank">Buy Tickets</a>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="media-object stack-for-small">
-          <div class="media-object-section">
-            <h5 id="date-time3"></h5>
-            <p id="venue3"></p>
-            <a id="button3" class="button" target="_blank">Buy Tickets</a>
-          </div>
-        </div>
-        </div>
       </div>
     </div>
   </div>
